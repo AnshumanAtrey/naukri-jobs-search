@@ -16,7 +16,7 @@ Use it as a Naukri API with no login and no API key, a naukri.com job scraper or
 
 ## How is it different from other Naukri scrapers?
 
-- **The title matches what you typed.** The other Naukri actors pass your keyword to Naukri and return its answer as it comes: sorted by date, Naukri's answer for python developer starts with ServiceNow, AWS full stack and Java roles, because its search also reads key skills and text. Here every row's title holds every word, so 100 rows are 100 Python developer jobs.
+- **The title matches what you typed.** The three most used Naukri actors pass your keyword to Naukri and return its answer as it comes (memo23 adds an optional filter on any word in the title, company or description): sorted by date, Naukri's answer for python developer starts with ServiceNow, AWS full stack and Java roles, because its search also reads key skills and text. Here every row's title holds every word, so 100 rows are 100 Python developer jobs.
 - **Several titles and places in one run.** Type sales manager and operations executive, Mumbai and Pune, in one form; the leading actors take one keyword and one location.
 - **Repost detection on every row.** `firstPostedAt` comes from the job's ID, so a two-month-old job an employer reposted today is visible as one.
 - **Clean, flat rows.** Pay as numbers, rating and review count as two fields, places as text, skills as a list: no nested company or AmbitionBox objects to post-process.
@@ -260,6 +260,7 @@ Naukri Jobs Scraper reads public job postings, the pages any visitor sees withou
 ## Limitations
 
 - Naukri shows at most 15,000 jobs for one search (150 pages of 100). A search with no words, place or company reads the jobs posted in the last 30 days, because Naukri answers its whole list unevenly (four calls in a row listed 511,439 to 692,506 jobs); the newest 15,000 of all Naukri are under two days old.
+- Naukri's list gives an internship no posting date, so its `postedAt` is the day it was first listed (from its ID). Naukri orders internships by a later repost date it does not show, so a reposted internship can rank lower here than on Naukri (2 of Naukri's 20 newest marketing internships on 2026-11-08). Full details carry the real date.
 - Job type is on the job's own page only, except internships, which Naukri marks in its list. Picking full-time, part-time, contract or temporary opens each job whose title matches, up to 300 a run.
 - Company type and who posted a job are Naukri's own filters; the list does not show them, so they are not checked again here (who posted it comes with full details).
 - Naukri limits each address; a refused run keeps what it read and says so (see above). Full details make one call per job, so large runs with details meet the limit sooner.
