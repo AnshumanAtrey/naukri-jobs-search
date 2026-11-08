@@ -40,7 +40,7 @@ Pay per event: $0.017 per 1,000 jobs, or $0.037 per 1,000 with full details, plu
 | Job with details | $0.000037 | One saved job with full details on |
 | Run start | $0.0025 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0025 at the default 512 MB |
 
-Naukri Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.012 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.000017 a job; with full details FREE pays $0.000037 and BRONZE $0.000035. SILVER (Scale) pays $0.000014 and $0.000028, GOLD (Business) $0.000012 and $0.000022, PLATINUM and DIAMOND $0.000011 and $0.000021. Each price is what that row costs on Apify at that plan's own rates, measured on 11 runs, plus a markup that falls from 150% to 100% as the plan grows. The run start is a flat fee on every plan, $0.0025 per GB of memory, and the header never shows it.
+Naukri Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.012 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.000017 a job; with full details FREE pays $0.000037 and BRONZE $0.000035. SILVER (Scale) pays $0.000014 and $0.000028, and GOLD (Business) and the enterprise tiers $0.000012 and $0.000022. Each price is what that row costs on Apify at that plan's own rates, measured on Apify runs, plus a markup of 150% on the Free and Starter plans that falls to 110% on Business. The run start is a flat fee on every plan, $0.0025 per GB of memory, and the header never shows it.
 
 | Run (Free and Starter price, default memory) | Cost |
 |---|---|

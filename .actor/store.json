@@ -17,7 +17,7 @@
     },
     "defaultRunOptions$comment": "Default 512 MB, measured on Apify on 2026-11-08 (build 1.0.2): the example input took 21.2 s and $0.001252 at 512 MB, 17.6 s and $0.001645 at 1 GB, 16.3 s and $0.002465 at 2 GB, peaking at 63 to 65 MB; every run at 512 MB peaked at 56 to 90 MB. The work waits on Naukri, so 1 GB is 17% faster for 31% more cost and 2 GB 23% faster for 97% more; the start fee is one event up to 1 GB either way. Timeout 1800 s: 1,000 jobs took 25 s and 100 jobs with full details 35 s.",
     "pricing": {
-        "$comment": "Cost plus markup (owner, 2026-11-08, BRIEF-3): FREE 150%, BRONZE 140%, SILVER 125%, GOLD 110%, PLATINUM and DIAMOND 100% over the measured Apify cost at each tier's unit prices, rounded up to two significant figures, never under $0.00001. Measured on Apify (8 runs at 512 MB: E8fQPNKwSGsQZL9sC, zHWG7IFukI8Aa1o5F, hIBYthZ0EVnXEeAMy, PeRBapy4XJgixuUpu, rAcpysqPWAv9RI1Ak, EpipgkyeNwchrbn9U, FEybFxRPVwXFhoR9k, ieFTNIj4PK3RB8umu): a run costs $0.000503 + $0.00000539 a job + $0.00001158 a job with details at FREE unit prices (docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md); PLATINUM and DIAMOND at GOLD's unit prices. Margin (SEO.md 16.4, 1 - cost / (0.8 x price)) per tier: job FREE 60.4%, BRONZE 60.4%, SILVER 57.0%, GOLD 55.6%, PLATINUM 51.6%, DIAMOND 51.6%; job-details FREE 60.9%, BRONZE 58.6%, SILVER 56.2%, GOLD 52.5%, PLATINUM 50.2%, DIAMOND 50.2%. Written by pricing/calc_pricing.py from block_cost.json.",
+        "$comment": "Cost plus markup (owner, 2026-11-08, BRIEF-3): FREE 150%, BRONZE 140%, SILVER 125%, GOLD 110%, PLATINUM and DIAMOND 100% over the measured Apify cost at each tier's unit prices, rounded up to two significant figures, never under $0.00001. Measured on Apify (8 runs at 512 MB: E8fQPNKwSGsQZL9sC, zHWG7IFukI8Aa1o5F, hIBYthZ0EVnXEeAMy, PeRBapy4XJgixuUpu, rAcpysqPWAv9RI1Ak, EpipgkyeNwchrbn9U, FEybFxRPVwXFhoR9k, ieFTNIj4PK3RB8umu): a run costs $0.000503 + $0.00000539 a job + $0.00001158 a job with details at FREE unit prices (docs.apify.com/platform/actors/publishing/monetize/pricing-and-costs.md); PLATINUM and DIAMOND at GOLD's unit prices. Margin (SEO.md 16.4, 1 - cost / (0.8 x price)) per tier: job FREE 60.4%, BRONZE 60.4%, SILVER 57.0%, GOLD 55.6%, PLATINUM 55.6%, DIAMOND 55.6%; job-details FREE 60.9%, BRONZE 58.6%, SILVER 56.2%, GOLD 52.5%, PLATINUM 52.5%, DIAMOND 52.5%. Apify stores PLATINUM and DIAMOND at GOLD's price whatever is sent (first set, 2026-11-08: $0.000011 sent, $0.000012 stored), so they carry GOLD's price here too. The run start, $0.0025 flat, is 150% over the fixed cost of a run ($0.0016) raised so the example at 1 GB clears a 100% markup on FREE; every measured run type clears it on every tier. Written by pricing/calc_pricing.py from block_cost.json.",
         "apply": true,
         "pricingInfos": [
             {
@@ -43,10 +43,10 @@
                                     "tieredEventPriceUsd": 0.000012
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.000011
+                                    "tieredEventPriceUsd": 0.000012
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.000011
+                                    "tieredEventPriceUsd": 0.000012
                                 }
                             }
                         },
@@ -67,16 +67,16 @@
                                     "tieredEventPriceUsd": 0.000022
                                 },
                                 "PLATINUM": {
-                                    "tieredEventPriceUsd": 0.000021
+                                    "tieredEventPriceUsd": 0.000022
                                 },
                                 "DIAMOND": {
-                                    "tieredEventPriceUsd": 0.000021
+                                    "tieredEventPriceUsd": 0.000022
                                 }
                             }
                         },
                         "apify-actor-start": {
-                            "eventTitle": "Run start",
-                            "eventDescription": "Charged by Apify when a run starts: once up to 1 GB of memory and once more for each extra GB, so $0.0025 at the default 512 MB.",
+                            "eventTitle": "Actor Start",
+                            "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
                             "eventPriceUsd": 0.0025
                         }
                     }
