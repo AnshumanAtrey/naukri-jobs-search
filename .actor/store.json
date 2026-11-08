@@ -1,5 +1,6 @@
 {
-    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). No actorId yet: the first CI deploy creates the actor, then its ID goes here so a rename keeps the same actor.",
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md). actorId pins the actor created by the first deploy (2026-11-08, build 1.0.2), so a rename keeps the same actor.",
+    "actorId": "cgQQsXsh2cnq3AdnD",
     "seoTitle": "Naukri Jobs Scraper - Salary, Skills and Experience",
     "seoDescription": "Search every job on naukri.com by keyword, city, experience and pay in lakhs. Get salary, key skills, company rating and apply links. No login needed.",
     "exampleRunInput": {
