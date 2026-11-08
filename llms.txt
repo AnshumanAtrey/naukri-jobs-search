@@ -58,7 +58,7 @@ Apify's free $5 monthly credit covers about 16,000 jobs in runs of 100.
 
 ## Speed
 
-Seconds: in local runs on 2026-11-08 the empty form took 1 s inside the actor, python developer 14 s, python developer in Bangalore 13 s, and 3,000 sales jobs 58 s (about 50 jobs a second). Full details add about 0.25 s a job.
+Seconds: in local runs on 2026-11-08 the empty form took 1 s inside the actor, python developer 14 s, python developer in Bangalore 13 s, and 3,000 sales jobs 58 s (about 50 jobs a second). Full details add one call a job, at most four a second: 100 jobs with full details took 165 s in a local run.
 
 ## How to call it
 

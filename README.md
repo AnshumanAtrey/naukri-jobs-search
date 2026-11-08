@@ -166,7 +166,7 @@ Full details fill `employmentType`, `department`, `companyWebsite`, `industry`, 
 
 ## How fast is it?
 
-Seconds. In local runs on 2026-11-08 the empty form took 1 s inside the actor (2 calls), python developer 14 s (11 calls), python developer in Bangalore 13 s, the 500 newest jobs of the last 24 hours 3 s, and 3,000 sales jobs 58 s (56 calls, about 50 jobs a second, 85 MB of memory). Full details add about 0.25 s a job. Naukri's search returns 100 jobs a page, newest first; a rare title takes more pages, because Naukri's answer also holds jobs that only mention the words.
+Seconds. In local runs on 2026-11-08 the empty form took 1 s inside the actor (2 calls), python developer 14 s (11 calls), python developer in Bangalore 13 s, the 500 newest jobs of the last 24 hours 3 s, and 3,000 sales jobs 58 s (56 calls, about 50 jobs a second, 85 MB of memory). Full details add one call a job, at most four a second: 100 jobs with full details took 165 s in a local run. Naukri's search returns 100 jobs a page, newest first; a rare title takes more pages, because Naukri's answer also holds jobs that only mention the words.
 
 ## Common questions
 
@@ -180,7 +180,7 @@ Naukri counts every job whose title, key skills or text holds your words: 37,872
 
 ### How do places work?
 
-Naukri Jobs Scraper reads places the way people type them: Bangalore and Bengaluru, Gurgaon and Gurugram, Bombay and Mumbai find the same jobs; a state (Karnataka, or KA) finds jobs in its cities, from Naukri's own list of 5,810 Indian cities; Delhi NCR finds Delhi, Noida, Gurugram, Ghaziabad and Faridabad; India keeps every job in India. A country abroad (United Arab Emirates) finds the jobs whose place names it; Naukri often writes only the city (Dubai), so type the city too. A Naukri job open to remote work names Remote as its place, so type Remote in Remote or office (`workType`) rather than a city to get remote jobs.
+Naukri Jobs Scraper reads places the way people type them: Bangalore and Bengaluru, Gurgaon and Gurugram, Bombay and Mumbai find the same jobs; a state (Karnataka, or KA) finds jobs in its cities, from Naukri's own list of 5,810 Indian cities, also by the names Naukri's jobs print (Bhubaneswar, Nashik, Tumakuru, New Delhi, Mumbai Suburban), so 5,780 of 5,820 places on 3,981 jobs read on 2026-11-08 got their state or country; Delhi NCR finds Delhi, Noida, Gurugram, Ghaziabad and Faridabad; India keeps every job in India. A country abroad (United Arab Emirates) finds the jobs whose place names it; Naukri often writes only the city (Dubai), so type the city too. A Naukri job open to remote work names Remote as its place, so type Remote in Remote or office (`workType`) rather than a city to get remote jobs.
 
 ### How do I get only jobs above a salary?
 
@@ -265,7 +265,7 @@ Naukri Jobs Scraper reads public job postings, the pages any visitor sees withou
 - Company type and who posted a job are Naukri's own filters; the list does not show them, so they are not checked again here (who posted it comes with full details).
 - Naukri limits each address; a refused run keeps what it read and says so (see above). Full details make one call per job, so large runs with details meet the limit sooner.
 - Pay is shown on about half to two thirds of jobs; the rest say "Not disclosed".
-- A place abroad that Naukri writes without its country (Dubai, London) has no country in the row: India leaves it out, and the country's name does not find it, so type the city.
+- A place abroad that Naukri writes without its country (Dubai, London) has no country in the row: India leaves it out, and the country's name does not find it, so type the city. A part of a city that is not on Naukri's city list (Powai, Koramangala) has no state either, so a search for its state leaves the job out unless the job also names its city; a search for the place itself finds it.
 - A job posted twice by one company at one place, with the same experience and pay, is delivered once, the newest.
 - Titles and descriptions are as the employer wrote them, almost all in English.
 
