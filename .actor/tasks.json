@@ -1,0 +1,287 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 512,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "naukri-jobs-last-24-hours",
+            "title": "Get the newest Naukri jobs posted in the last 24 hours",
+            "description": "Get the 100 newest jobs posted on naukri.com in the last day, with the company, places, experience, pay when shown, key skills and link. Set Number of jobs to 0 to get every one, and schedule it daily for a fresh feed.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "24 hours",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "New Naukri Jobs Posted in the Last 24 Hours",
+            "seoDescription": "The newest jobs on naukri.com from the last day, with company, experience, salary, key skills and link. Run it daily for a fresh India job feed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "python-developer-jobs-bangalore",
+            "title": "Find Python developer jobs in Bangalore on Naukri",
+            "description": "Search naukri.com for Python developer jobs in Bangalore (Bengaluru), newest first, with the company, experience asked, pay when shown, key skills and link. Every title holds both words.",
+            "input": {
+                "searchTerms": [
+                    "python developer"
+                ],
+                "location": [
+                    "Bangalore"
+                ],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Python Developer Jobs in Bangalore on Naukri",
+            "seoDescription": "The newest Python developer jobs in Bangalore from naukri.com, with company, experience, salary in lakhs, key skills and apply link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experience",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "remote-jobs-naukri",
+            "title": "Find remote work from home jobs on Naukri",
+            "description": "Get the newest remote (work from home) jobs on naukri.com, with the company, experience, pay when shown, key skills and link. Naukri states the work mode of every job.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [
+                    "remote"
+                ],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Remote Work From Home Jobs on Naukri",
+            "seoDescription": "The newest remote and work from home jobs on naukri.com, newest first, with company, experience, salary and link. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "data-analyst-jobs-naukri",
+            "title": "Find data analyst jobs in India on Naukri",
+            "description": "Search naukri.com for data analyst jobs across India, newest first, with the company, places, experience asked, pay when shown, key skills and company rating.",
+            "input": {
+                "searchTerms": [
+                    "data analyst"
+                ],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Data Analyst Jobs in India on Naukri",
+            "seoDescription": "Data analyst jobs from naukri.com, newest first, with company, city, experience, salary in lakhs, key skills and company rating.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "fresher-jobs-naukri",
+            "title": "Find jobs for freshers on Naukri",
+            "description": "Get the newest naukri.com jobs open to freshers (0 years of experience), with the company, places, pay when shown and link. Add a job title to narrow it down.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": [],
+                "experience": 0
+            },
+            "seoTitle": "Jobs for Freshers on Naukri, Newest First",
+            "seoDescription": "Newest naukri.com jobs open to freshers with 0 years of experience, with company, city, salary and apply link. One search, no login.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experience",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "software-jobs-above-20-lpa-naukri",
+            "title": "Find software engineer jobs paying 20 LPA or more on Naukri",
+            "description": "Search naukri.com for software engineer jobs paying 20 lakhs a year or more, newest first, with the pay shown, experience asked, company rating and link. Naukri also counts pay the employer entered but hides.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": [],
+                "minSalaryLakhs": 20
+            },
+            "seoTitle": "Software Engineer Jobs Above 20 LPA on Naukri",
+            "seoDescription": "Software engineer jobs on naukri.com paying 20 LPA or more, newest first, with salary, experience, company rating and apply link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "minSalaryLakhs",
+                "experience",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "internships-naukri",
+            "title": "Find internships on Naukri",
+            "description": "Get the newest internships on naukri.com, with the stipend, the company, places and link. Add a field such as marketing to narrow them down.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [
+                    "intern"
+                ],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Internships on Naukri, Newest First",
+            "seoDescription": "The newest internships on naukri.com with stipend, company, city and link. Add a field such as marketing or data to narrow the list.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "employmentType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "sales-jobs-mumbai-naukri",
+            "title": "Find sales jobs in Mumbai on Naukri with full details",
+            "description": "Search naukri.com for sales jobs in Mumbai with full details: the description, job type, department, role, industry, education, applicants so far and pay when shown.",
+            "input": {
+                "searchTerms": [
+                    "sales"
+                ],
+                "location": [
+                    "Mumbai"
+                ],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": true,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Sales Jobs in Mumbai on Naukri With Full Details",
+            "seoDescription": "Sales jobs in Mumbai from naukri.com with the full description, role, industry, education, applicants and salary. Clean JSON or CSV.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs",
+                "includeDetails"
+            ],
+            "datasetView": "details"
+        },
+        {
+            "name": "check-naukri-job-links",
+            "title": "Check whether Naukri job links are still open",
+            "description": "Paste Naukri job links or job IDs and each comes back open, with the job, or closed. Handy for cleaning expired jobs out of a sheet or a job board.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companyType": [],
+                "companies": [],
+                "jobUrls": [
+                    "https://www.naukri.com/job-listings-python-developer-cgi-hyderabad-chennai-bengaluru-5-to-8-years-051126035541"
+                ]
+            },
+            "seoTitle": "Check if Naukri Job Links Are Still Open",
+            "seoDescription": "Paste naukri.com job links and see which are open or expired. Clean dead links out of a sheet or job board, with no login.",
+            "inputSchemaFields": [
+                "jobUrls"
+            ],
+            "datasetView": "jobs"
+        }
+    ]
+}

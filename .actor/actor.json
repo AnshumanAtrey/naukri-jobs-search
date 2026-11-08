@@ -1,0 +1,654 @@
+{
+    "actorSpecification": 1,
+    "name": "naukri-jobs-search",
+    "title": "Naukri Jobs Scraper & API - Salary, Experience, Last 24 Hours",
+    "description": "Naukri jobs scraper and API for naukri.com, India's largest job board: search live by job title, city, experience, pay in lakhs, remote or hybrid and posting date, newest first. 692,000+ open jobs, pay shown on over half, key skills, company ratings, walk-ins and internships, no login.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Naukri jobs",
+            "description": "One row per job, newest first: title, company, places, remote or office, experience, pay, key skills, company rating, posting dates and links; with details on, also the description, job type, department, role, industry, education and applicants. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the employer wrote it on Naukri.",
+                        "example": "Python Developer"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The employer as Naukri names it, or the hiring consultancy for a job a consultant posted.",
+                        "example": "CGI"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "The job's first place as Naukri writes it: a city, with the area in brackets when given (\"Bengaluru(Whitefield)\"), or Remote.",
+                        "example": "Bengaluru"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "Every other place Naukri lists for the job.",
+                        "example": [
+                            "Hyderabad",
+                            "Chennai"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or office (workType)",
+                        "description": "remote, hybrid or onsite (work from office), as Naukri states it for every job.",
+                        "example": "hybrid"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, part-time, contract, temporary or intern. Internships are marked in every row; other job types come with details on, from the job's own page.",
+                        "example": "full-time"
+                    },
+                    "department": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Hiring department (department)",
+                        "description": "Naukri's department of the job, with details on, such as Engineering - Software & QA.",
+                        "example": "Engineering - Software & QA"
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay as shown (salary)",
+                        "description": "The pay Naukri shows, as the employer entered it: yearly in lakhs (\"7-17 Lacs PA\") or a monthly stipend (\"5,000/month\"). Empty when the pay is not disclosed, as on about half of the jobs.",
+                        "example": "7-17 Lacs PA"
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "The lowest pay as a number in rupees, per salaryPeriod. Empty when the pay is not disclosed.",
+                        "example": 700000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "The highest pay as a number in rupees, per salaryPeriod.",
+                        "example": 1700000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "The currency of the pay numbers, INR on almost every job.",
+                        "example": "INR"
+                    },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "year for a salary (Naukri shows it per annum), month for an internship stipend.",
+                        "example": "year"
+                    },
+                    "experience": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Experience asked (experience)",
+                        "description": "The experience the job asks for, as Naukri shows it.",
+                        "example": "5-9 Yrs"
+                    },
+                    "experienceMin": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Fewest years (experienceMin)",
+                        "description": "The fewest years of experience the job asks for.",
+                        "example": 5
+                    },
+                    "experienceMax": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Most years (experienceMax)",
+                        "description": "The most years of experience the job asks for.",
+                        "example": 9
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Key skills (skills)",
+                        "description": "The key skills Naukri lists for the job; with details on, the full list from the job's page.",
+                        "example": [
+                            "Python",
+                            "Django",
+                            "AWS"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When Naukri says the job was posted, in UTC, to the second: the date it shows (\"1 Day Ago\") and sorts and filters by. An employer can post a job again, which moves this date; firstPostedAt keeps the first day. An internship gives only the first day.",
+                        "example": "2026-11-07T20:45:35Z"
+                    },
+                    "firstPostedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "First posted on (firstPostedAt)",
+                        "description": "The day Naukri first listed the job, read from its job ID (it starts with the day, DDMMYY). Earlier than postedAt when the employer posted the job again.",
+                        "example": "2026-09-04"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on naukri.com.",
+                        "example": "https://www.naukri.com/job-listings-ai-data-engineer-hcltech-bengaluru-5-to-9-years-081126000173"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "Where to apply: the job's page on naukri.com, or with details on, the employer's own job page for a job Naukri copied from a company career site (about 1 job in 9).",
+                        "example": "https://www.naukri.com/job-listings-ai-data-engineer-hcltech-bengaluru-5-to-9-years-081126000173"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (Naukri says the job expired; it says the same for an ID that never existed) or not found (not a Naukri job ID).",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job site (platform)",
+                        "description": "Where the job came from: always naukri here.",
+                        "example": "naukri"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company page (companySlug)",
+                        "description": "The company's jobs page on Naukri, as in naukri.com/cgi-jobs-careers-217. Typed in Only these companies, it finds that company.",
+                        "example": "cgi-jobs-careers-217"
+                    },
+                    "companyWebsite": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company website (companyWebsite)",
+                        "description": "The employer's website, with details on, when Naukri has it.",
+                        "example": "https://jobs.welcome.epam.in"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "Naukri's 12-digit ID of the job, the end of its link.",
+                        "example": "081126000173"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read Naukri, in UTC.",
+                        "example": "2026-11-08T01:30:00+00:00"
+                    },
+                    "companyRating": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Company rating (companyRating)",
+                        "description": "The employer's rating out of 5 on AmbitionBox, Naukri's company review site.",
+                        "example": 3.4
+                    },
+                    "companyReviews": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Company reviews (companyReviews)",
+                        "description": "How many employee reviews that rating rests on.",
+                        "example": 51522
+                    },
+                    "vacancies": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Openings (vacancies)",
+                        "description": "How many people the employer is hiring for the job, when it says.",
+                        "example": 2
+                    },
+                    "walkIn": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Walk-in interview? (walkIn)",
+                        "description": "true for a walk-in job: candidates come to an interview on given days.",
+                        "example": false
+                    },
+                    "summary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job summary (summary)",
+                        "description": "The job's text as Naukri's search list shows it, as plain text: a short summary, sometimes the whole description.",
+                        "example": "We have an urgent opening for the role of AI Data engineer in Bangalore."
+                    },
+                    "companyLogo": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company logo (companyLogo)",
+                        "description": "A link to the employer's logo on Naukri.",
+                        "example": "https://img.naukimg.com/logo_images/groups/v1/194354.gif"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The full job description as plain text, with details on.",
+                        "example": "Design, develop, and maintain web applications using Python and Django."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "The full job description as the employer wrote it in HTML, with details on.",
+                        "example": "<p>Design, develop, and maintain web applications using Python and Django.</p>"
+                    },
+                    "reference": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Employer's reference (reference)",
+                        "description": "The employer's own reference for the job, with details on, as it was typed.",
+                        "example": "RE-INT"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job's city (city)",
+                        "description": "The city of the job's first place, without the area in brackets, with details on.",
+                        "example": "Hyderabad"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State (region)",
+                        "description": "The Indian state of the job's first place, from Naukri's own list of 5,810 Indian cities, with details on.",
+                        "example": "Telangana"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job's country (country)",
+                        "description": "The country of the job's first place, with details on: India for an Indian city or Remote, the country a place abroad names, empty for a city abroad that names none (Dubai).",
+                        "example": "India"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "The two-letter code of that country, with details on.",
+                        "example": "IN"
+                    },
+                    "industry": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company industry (industry)",
+                        "description": "The employer's industry, with details on.",
+                        "example": "IT Services & Consulting"
+                    },
+                    "role": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job role (role)",
+                        "description": "Naukri's role of the job, with details on.",
+                        "example": "Full Stack Developer"
+                    },
+                    "roleCategory": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Role category (roleCategory)",
+                        "description": "Naukri's role category of the job, with details on.",
+                        "example": "Software Development"
+                    },
+                    "education": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Education asked (education)",
+                        "description": "The degrees the job asks for, with details on: UG is a first degree, PG a master's.",
+                        "example": "UG: Any Graduate; PG: Any Postgraduate"
+                    },
+                    "applicants": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Applicants so far (applicants)",
+                        "description": "How many people had applied on Naukri, with details on.",
+                        "example": 288
+                    },
+                    "views": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Times viewed (views)",
+                        "description": "How many times the job was viewed on Naukri, with details on.",
+                        "example": 5554
+                    },
+                    "postedBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted by (postedBy)",
+                        "description": "company when the employer posted the job, consultant when a recruitment consultancy did, with details on.",
+                        "example": "company"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, remote or not, the experience and pay asked, key skills and when Naukri says it was posted, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "workType",
+                            "experience",
+                            "salary",
+                            "skills",
+                            "postedAt",
+                            "jobUrl",
+                            "status"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or office (workType)",
+                                "format": "text"
+                            },
+                            "experience": {
+                                "label": "Experience asked (experience)",
+                                "format": "text"
+                            },
+                            "salary": {
+                                "label": "Pay as shown (salary)",
+                                "format": "text"
+                            },
+                            "skills": {
+                                "label": "Key skills (skills)",
+                                "format": "array"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description, job type, department, role, industry, education, pay as numbers, company rating, applicants and every other field of each job.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "description",
+                            "employmentType",
+                            "department",
+                            "role",
+                            "industry",
+                            "education",
+                            "skills",
+                            "experienceMin",
+                            "experienceMax",
+                            "salaryMin",
+                            "salaryMax",
+                            "salaryPeriod",
+                            "companyRating",
+                            "companyReviews",
+                            "applicants",
+                            "postedBy",
+                            "firstPostedAt",
+                            "applyUrl",
+                            "companyWebsite",
+                            "jobId",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "employmentType": {
+                                "label": "Job type (employmentType)",
+                                "format": "text"
+                            },
+                            "department": {
+                                "label": "Hiring department (department)",
+                                "format": "text"
+                            },
+                            "role": {
+                                "label": "Job role (role)",
+                                "format": "text"
+                            },
+                            "industry": {
+                                "label": "Company industry (industry)",
+                                "format": "text"
+                            },
+                            "education": {
+                                "label": "Education asked (education)",
+                                "format": "text"
+                            },
+                            "skills": {
+                                "label": "Key skills (skills)",
+                                "format": "array"
+                            },
+                            "experienceMin": {
+                                "label": "Fewest years (experienceMin)",
+                                "format": "number"
+                            },
+                            "experienceMax": {
+                                "label": "Most years (experienceMax)",
+                                "format": "number"
+                            },
+                            "salaryMin": {
+                                "label": "Lowest pay (salaryMin)",
+                                "format": "number"
+                            },
+                            "salaryMax": {
+                                "label": "Highest pay (salaryMax)",
+                                "format": "number"
+                            },
+                            "salaryPeriod": {
+                                "label": "Pay period (salaryPeriod)",
+                                "format": "text"
+                            },
+                            "companyRating": {
+                                "label": "Company rating (companyRating)",
+                                "format": "number"
+                            },
+                            "companyReviews": {
+                                "label": "Company reviews (companyReviews)",
+                                "format": "number"
+                            },
+                            "applicants": {
+                                "label": "Applicants so far (applicants)",
+                                "format": "number"
+                            },
+                            "postedBy": {
+                                "label": "Posted by (postedBy)",
+                                "format": "text"
+                            },
+                            "firstPostedAt": {
+                                "label": "First posted on (firstPostedAt)",
+                                "format": "date"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "companyWebsite": {
+                                "label": "Company website (companyWebsite)",
+                                "format": "link"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many jobs Naukri listed and how many matched and were saved, the checked links, the notes about how the input was read and the settings used.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts of jobs read, matched and saved, checked links, errors, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}

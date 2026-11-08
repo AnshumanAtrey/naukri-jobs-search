@@ -1,0 +1,162 @@
+# Naukri Jobs Scraper & API - Salary, Experience, Last 24 Hours
+
+> Naukri jobs scraper and API for naukri.com, India's largest job board: search live by job title, city, experience, pay in lakhs, remote or hybrid and posting date, newest first.
+
+## Summary
+
+Naukri Jobs Search is an Apify actor that searches naukri.com live, through the same search Naukri's own pages use, and returns one row per job, newest first: title, company, places, remote, hybrid or office work, experience asked (text and years), pay as shown and as numbers in rupees, key skills, company rating and review count, Naukri's posting date and the day the job was first listed, and the link. Naukri held about 690,000 open jobs on 2026-11-08 (692,506), with pay shown on 52% to 69% of jobs in four samples. Unlike the other Naukri actors, every row's title holds the words you typed (Naukri's own search also returns jobs that only mention them in skills or text), several titles and places go in one run, places are read by any name (Bangalore or Bengaluru, a state, Delhi NCR), and reposted jobs show their first posting day. No login and no API key.
+
+Store: https://apify.com/anshumanatrey/naukri-jobs-search
+Source: https://github.com/AnshumanAtrey/naukri-jobs-search
+
+## Key features
+
+- All of Naukri, read live at run time, newest first by the date Naukri shows; at most 15,000 jobs for one search, as on Naukri.
+- Titles that match: a job is kept when its title has every word of a line; Wider match returns Naukri's whole answer.
+- Naukri's own filters: years of experience, minimum pay in lakhs (Naukri also counts hidden pay), work from office, hybrid or remote, company type, posted by a company or a consultant, last 24 hours to 30 days.
+- Pay, experience, key skills, company rating, walk-in flag, openings and firstPostedAt (repost detection) on every row; full details add the description, job type, department, role, industry, education and applicants.
+- Places by any name: old and new city names, states from Naukri's list of 5,810 Indian cities, Delhi NCR, India, countries abroad.
+- Reads a pasted naukri.com search link with its words, place and filters, and checks pasted job links or job IDs (open or closed).
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word; a Naukri search link works too.
+- Where the job is (location): cities, states or countries; India keeps every job in India.
+- Remote or office (workType): remote, hybrid or onsite (work from office).
+- Posted in the last (postedWithin): 24 hours, 3, 7, 15 or 30 days, any time, or your own period.
+- Years of experience (experience): keeps the jobs whose experience range holds it; 0 for freshers.
+- Minimum pay (minSalaryLakhs): lakhs a year; 10 is 10 LPA.
+- Company type (companyType): foreign-mnc, indian-mnc, mnc, corporate, startup, unicorn, govt-psu, others.
+- Posted by (postedBy): company or consultant.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description, job type, department, role, industry, education, applicants, website and the employer's apply link.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Job type (employmentType): full-time, part-time, contract, intern or temporary.
+- Wider match (searchDescriptions): every job Naukri's search finds for the words, also in skills or text.
+- Only these companies (companies): company names as Naukri writes them, or a company page link.
+- Job links to check (jobUrls): Naukri job links or 12-digit job IDs.
+- Connection (proxyConfiguration): off by default; Apify Proxy when a run says Naukri refused its address.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included:
+
+- Job: $0.0003 per saved job ($0.30 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.00034 per saved job with full details on ($0.34 per 1,000)
+- Run start: $0.0009 per GB of memory, charged by Apify when a run starts, so $0.0009 at the default 512 MB
+
+Naukri Jobs Scraper's Apify Store header, "from $0.24 / 1,000 jobs", shows the lowest discount-tier price: the GOLD price. FREE and BRONZE users (Apify's Free and Starter plans) pay the base prices above, $0.0003 a job and $0.00034 with details; SILVER (Scale) pays 10% less, $0.00027 and $0.000306; GOLD (Business) and above pay 20% less, $0.00024 and $0.000272. The run start is a flat fee on every plan, $0.0009 per GB of memory, and the header never shows it.
+
+Typical costs (Free and Starter price, default memory):
+
+- 100 newest jobs: $0.031
+- 100 jobs with full details: $0.035
+- 1,000 jobs: $0.30
+- 15,000 jobs, the most Naukri shows for one search: $4.50
+
+Apify's free $5 monthly credit covers about 16,000 jobs in runs of 100.
+
+## Speed
+
+Seconds: in local runs on 2026-11-08 the empty form took 1 s inside the actor, python developer 14 s, python developer in Bangalore 13 s, and 3,000 sales jobs 58 s (about 50 jobs a second). Full details add about 0.25 s a job.
+
+## How to call it
+
+- Apify API: POST https://api.apify.com/v2/acts/anshumanatrey~naukri-jobs-search/run-sync-get-dataset-items with the input as JSON and the header Authorization: Bearer <APIFY_TOKEN>. It returns the rows and waits up to 300 seconds, so start runs of thousands of jobs with a client.
+- Python and JavaScript: the apify-client package, actor anshumanatrey/naukri-jobs-search.
+- n8n: the Apify node, Run an Actor and get dataset. Make: the Apify app's Run an Actor and Get Dataset Items modules.
+- MCP: https://mcp.apify.com?tools=anshumanatrey/naukri-jobs-search, signed in with Apify or with Authorization: Bearer <APIFY_TOKEN>.
+
+## When to use
+
+- The user wants jobs from naukri.com, or a Naukri jobs API, by title, city, experience, pay or date.
+- The user wants a daily feed of new Indian jobs, with salary in lakhs, experience and key skills.
+- The user wants jobs that really have the job title asked for, not every job that mentions a skill.
+- The user wants to know which jobs are reposts of older ones.
+- The user wants every open job of one company on Naukri, or to check whether Naukri job links are still open.
+
+## When NOT to use
+
+- The user needs NaukriGulf jobs: this actor reads naukri.com only (muhammetakkurtt/naukri-job-scraper and memo23/naukri-scraper read both).
+- The user needs more than 15,000 jobs for one search: Naukri shows no more; split the search by place, period or title.
+- The user needs employer emails or recruiter contacts: not in Naukri's public pages read here.
+- The user needs full details on thousands of jobs in one run: details take one call per job, and Naukri limits each address.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["python developer", "django developer"],
+  "location": ["Bangalore", "Pune"],
+  "experience": 3,
+  "minSalaryLakhs": 8,
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+From a local run on 2026-11-08, python developer in Bangalore (a Hyderabad job that also hires in Bengaluru).
+
+```json
+{
+  "title": "Python developer",
+  "company": "CGI",
+  "location": "Hyderabad",
+  "otherLocations": ["Chennai", "Bengaluru"],
+  "workType": "onsite",
+  "salary": "15-24 Lacs PA",
+  "postedAt": "2026-11-06T05:28:45Z",
+  "jobUrl": "https://www.naukri.com/job-listings-python-developer-cgi-hyderabad-chennai-bengaluru-3-to-10-years-061126009900",
+  "status": "open",
+  "platform": "naukri",
+  "companySlug": "cgi-jobs-careers-217",
+  "jobId": "061126009900",
+  "experience": "3-10 Yrs",
+  "experienceMin": 3,
+  "experienceMax": 10,
+  "skills": ["AWS", "Python", "Development", "MongoDB", "NoSQL", "Python Development"],
+  "salaryMin": 1500000,
+  "salaryMax": 2400000,
+  "salaryCurrency": "INR",
+  "salaryPeriod": "year",
+  "firstPostedAt": "2026-11-06",
+  "companyRating": 4.0,
+  "companyReviews": 6114,
+  "vacancies": 2,
+  "walkIn": false
+}
+```
+
+## Differentiators vs alternatives
+
+- vs valig/naukri-jobs-scraper ($0.0004 per job with details, $0.001 start; the most used): one keyword and one location per run, Naukri's loose keyword match passed through, filters as codes; this actor checks titles, takes several titles and places, a pay minimum and company type, and costs $0.0003 a job ($0.00034 with details).
+- vs muhammetakkurtt/naukri-job-scraper ($0.0015 per job, $0.003 detailed): every Naukri filter by id and NaukriGulf too; this actor takes everyday words (Bangalore, 10 LPA, startup) and costs a fifth of its price per job.
+- vs blackfalcondata/naukri-jobs-feed ($0.00039 per job, $0.001 start): incremental mode and notifications; this actor costs less per job on every plan and flags reposts on every row with firstPostedAt.
+
+## Sibling actors
+
+- Greenhouse Jobs Scraper (https://apify.com/anshumanatrey/greenhouse-jobs-search): Jobs from every company on Greenhouse, searched live
+- Lever Jobs Scraper (https://apify.com/anshumanatrey/lever-jobs-search): Jobs from 2,300+ companies on Lever (jobs.lever.co), searched live
+- Workday Jobs Scraper (https://apify.com/anshumanatrey/workday-job-search): Jobs from every company on Workday (myworkdayjobs.com), searched live
+- Ashby Jobs Scraper (https://apify.com/anshumanatrey/ashby-jobs-search): Jobs from every company on Ashby (jobs.ashbyhq.com), searched live
+- SmartRecruiters Jobs Scraper (https://apify.com/anshumanatrey/smartrecruiters-jobs-search): Jobs from 2,900+ companies on SmartRecruiters, searched live
+- Workable Jobs Scraper (https://apify.com/anshumanatrey/workable-job-search): Jobs from every company on Workable, in one search
+- Cornerstone Jobs Scraper (https://apify.com/anshumanatrey/cornerstone-jobs-search): Jobs from every company on Cornerstone (csod.com), searched live
+- Deel Jobs Scraper (https://apify.com/anshumanatrey/deel-jobs-search): Jobs from every company on Deel ATS (jobs.deel.com), with pay
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/naukri-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/naukri-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.
+
+## Last updated
+
+2026-11-08

@@ -1,0 +1,86 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). No actorId yet: the first CI deploy creates the actor, then its ID goes here so a rename keeps the same actor.",
+    "seoTitle": "Naukri Jobs Scraper - Salary, Skills and Experience",
+    "seoDescription": "Search every job on naukri.com by keyword, city, experience and pay in lakhs. Get salary, key skills, company rating and apply links. No login needed.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "python developer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 512,
+        "timeoutSecs": 1800
+    },
+    "defaultRunOptions$comment": "Default 512 MB, from local runs on 2026-11-08 (engine branch platform/naukri): the actor process peaked at 70 to 77 MB on every run and at 88.5 MB for 3,000 jobs, and the work is waiting on Naukri (one page of 100 jobs takes 0.5 to 3 s, read one after another). To re-measure on Apify after the push: the example input and the empty form at 512 MB and 1 GB (time, peak memory, usageTotalUsd), as ci/README asks; take 1 GB if 512 MB is more than twice as slow at the same cost.",
+    "pricing": {
+        "$comment": "Proposal of 2026-11-08, not yet applied. Rule: rules/SEO.md section 16. Main competitor: valig/naukri-jobs-scraper, the most used Naukri actor (2,799 u30): $0.0004 a job on FREE, $0.00036 BRONZE, $0.00032 SILVER, $0.00028 GOLD, every row with full details, plus a run start of $0.001 / $0.0009 / $0.0008 / $0.0007. job-details is 15% under it on FREE and 5.6% under on BRONZE; job, a list row, is 25% and 17% under. Others: blackfalcondata $0.00039 to $0.00027 + $0.001 start, memo23 $0.0008 + $0.001 start, muhammetakkurtt $0.0015 to $0.0008 ($0.003 with details) + $0.001 start. Run start: Apify apify-actor-start, $0.0009 per GB, once at the default 512 MB. Margin (owner: platform cost under 10% of 0.8 x revenue): local runs of 100 jobs took 4 to 17 s and 100 with details about 30 s more; at 512 MB and $0.20 per CU that is under $0.0015 of compute plus $0.0005 of dataset writes, about 6% to 8% of the $0.0247 a BRONZE run of 100 jobs earns. Re-check from usageTotalUsd on Apify. Gentle ladder per the owner decision of 2026-10-29. isPublic stays false until the priced proof run.",
+        "apply": true,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, places, remote or office, experience, pay, key skills, company rating, posting dates and link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.0003
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.0003
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.00027
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.00024
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.00024
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.00024
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, job type, department, role, industry, education, applicants, the employer's website and apply link.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.00034
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.00034
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.000306
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.000272
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.000272
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.000272
+                                }
+                            }
+                        },
+                        "apify-actor-start": {
+                            "eventTitle": "Run start",
+                            "eventDescription": "Charged by Apify when a run starts: once up to 1 GB of memory and once more for each extra GB, so $0.0009 at the default 512 MB.",
+                            "eventPriceUsd": 0.0009
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
