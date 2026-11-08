@@ -41,24 +41,24 @@ Source: https://github.com/AnshumanAtrey/naukri-jobs-search
 
 PAY_PER_EVENT model, platform usage included:
 
-- Job: $0.0003 per saved job ($0.30 per 1,000), and per checked link that is closed or not found
-- Job with details: $0.00034 per saved job with full details on ($0.34 per 1,000)
-- Run start: $0.0009 per GB of memory, charged by Apify when a run starts, so $0.0009 at the default 512 MB
+- Job: $0.000017 per saved job ($0.017 per 1,000), and per checked link that is closed or not found
+- Job with details: $0.000037 per saved job with full details on ($0.037 per 1,000)
+- Run start: $0.0025 per GB of memory, charged by Apify when a run starts, so $0.0025 at the default 512 MB
 
-Naukri Jobs Scraper's Apify Store header, "from $0.24 / 1,000 jobs", shows the lowest discount-tier price: the GOLD price. FREE and BRONZE users (Apify's Free and Starter plans) pay the base prices above, $0.0003 a job and $0.00034 with details; SILVER (Scale) pays 10% less, $0.00027 and $0.000306; GOLD (Business) and above pay 20% less, $0.00024 and $0.000272. The run start is a flat fee on every plan, $0.0009 per GB of memory, and the header never shows it.
+Naukri Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.012 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.000017 a job; with full details FREE pays $0.000037 and BRONZE $0.000035. SILVER (Scale) pays $0.000014 and $0.000028, GOLD (Business) $0.000012 and $0.000022, PLATINUM and DIAMOND $0.000011 and $0.000021. Each price is what that row costs on Apify at that plan's own rates, measured on 11 runs, plus a markup that falls from 150% to 100% as the plan grows. The run start is a flat fee on every plan, $0.0025 per GB of memory, and the header never shows it.
 
 Typical costs (Free and Starter price, default memory):
 
-- 100 newest jobs: $0.031
-- 100 jobs with full details: $0.035
-- 1,000 jobs: $0.30
-- 15,000 jobs, the most Naukri shows for one search: $4.50
+- 100 newest jobs: $0.0042
+- 100 jobs with full details: $0.0062
+- 1,000 jobs: $0.020
+- 15,000 jobs, the most Naukri shows for one search: $0.26
 
-Apify's free $5 monthly credit covers about 16,000 jobs in runs of 100.
+Apify's free $5 monthly credit covers about 119,000 jobs in runs of 100.
 
 ## Speed
 
-Seconds: in local runs on 2026-11-08 the empty form took 1 s inside the actor, python developer 14 s, python developer in Bangalore 13 s, and 3,000 sales jobs 58 s (about 50 jobs a second). Full details add one call a job, at most four a second: 100 jobs with full details took 165 s in a local run.
+Seconds: on Apify at the default 512 MB on 2026-11-08 the form as it opens took 8 s, python developer 21 s, python developer in Bangalore with 2-5 years 31 s, 1,000 sales jobs 25 s (40 jobs a second) and 100 jobs with full details 35 s. 1 GB was 17% faster for 31% more cost.
 
 ## How to call it
 
@@ -131,9 +131,9 @@ From a local run on 2026-11-08, python developer in Bangalore (a Hyderabad job t
 
 ## Differentiators vs alternatives
 
-- vs valig/naukri-jobs-scraper ($0.0004 per job with details, $0.001 start; the most used): one keyword and one location per run, Naukri's loose keyword match passed through, filters as codes; this actor checks titles, takes several titles and places, a pay minimum and company type, and costs $0.0003 a job ($0.00034 with details).
-- vs muhammetakkurtt/naukri-job-scraper ($0.0015 per job, $0.003 detailed): every Naukri filter by id and NaukriGulf too; this actor takes everyday words (Bangalore, 10 LPA, startup) and costs a fifth of its price per job.
-- vs blackfalcondata/naukri-jobs-feed ($0.00039 per job, $0.001 start): incremental mode and notifications; this actor costs less per job on every plan and flags reposts on every row with firstPostedAt.
+- vs valig/naukri-jobs-scraper ($0.0004 per job with details, $0.001 start; the most used): one keyword and one location per run, Naukri's loose keyword match passed through, filters as codes; this actor checks titles, takes several titles and places, a pay minimum and company type, and costs $0.000017 a job ($0.000037 with details) plus $0.0025 a run, less than valig from 4 jobs a run on the Free plan (7 on Business).
+- vs muhammetakkurtt/naukri-job-scraper ($0.0015 per job, $0.003 detailed): every Naukri filter by id and NaukriGulf too; this actor takes everyday words (Bangalore, 10 LPA, startup) and costs about a hundredth of its price per job.
+- vs blackfalcondata/naukri-jobs-feed ($0.00039 per job, $0.001 start): incremental mode and notifications; this actor costs less per job on every plan (its run start is higher: $0.0025 against $0.001) and flags reposts on every row with firstPostedAt.
 
 ## Sibling actors
 

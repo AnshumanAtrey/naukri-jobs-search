@@ -165,7 +165,7 @@
             "title": "Full details (includeDetails)",
             "type": "boolean",
             "editor": "checkbox",
-            "description": "Tick to add the full details of each job from its own page: the description as text and HTML, the job type, department, role, industry, education, all key skills, applicants so far, the employer's website and, for a job Naukri copied from a company career site, that site's apply link. A job with details costs $0.34 per 1,000 instead of $0.30, and the run reads each saved job once more.",
+            "description": "Tick to add the full details of each job from its own page: the description as text and HTML, the job type, department, role, industry, education, all key skills, applicants so far, the employer's website and, for a job Naukri copied from a company career site, that site's apply link. A job with details costs $0.037 per 1,000 instead of $0.017, and the run reads each saved job once more.",
             "default": false,
             "nullable": true
         },

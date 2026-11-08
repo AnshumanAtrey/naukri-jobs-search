@@ -2,7 +2,7 @@
 
 Naukri jobs scraper and API: search naukri.com, India's largest job board, live by job title, city, years of experience, pay in lakhs, remote or hybrid work and posting date, and get each job's title, company, places, experience asked, salary, key skills, company rating, posting date and link, newest first, internships and walk-in jobs included. Turn on full details for the description, job type, department, role, industry, education and applicants so far.
 
-Use it as a Naukri API with no login and no API key, a naukri.com job scraper or a daily India job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Every row's title holds the words you typed, Bangalore finds Bengaluru jobs, and a pasted Naukri search link keeps its filters. Available as an [Apify Actor](https://apify.com/anshumanatrey/naukri-jobs-search). $0.0003 per job, $0.00034 with full details, $0.0009 per run start at the default memory.
+Use it as a Naukri API with no login and no API key, a naukri.com job scraper or a daily India job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Every row's title holds the words you typed, Bangalore finds Bengaluru jobs, and a pasted Naukri search link keeps its filters. Available as an [Apify Actor](https://apify.com/anshumanatrey/naukri-jobs-search). $0.000017 per job, $0.000037 with full details, $0.0025 per run start at the default memory.
 
 ## What does it do?
 
@@ -32,22 +32,22 @@ Use it as a Naukri API with no login and no API key, a naukri.com job scraper or
 
 ## How much does it cost to scrape Naukri jobs?
 
-Pay per event: $0.30 per 1,000 jobs, or $0.34 per 1,000 with full details, plus $0.0009 per run at the default 512 MB. Apify's free $5 monthly credit covers about 16,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.017 per 1,000 jobs, or $0.037 per 1,000 with full details, plus $0.0025 per run at the default 512 MB. Apify's free $5 monthly credit covers about 119,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.0003 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.00034 | One saved job with full details on |
-| Run start | $0.0009 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0009 at the default 512 MB |
+| Job | $0.000017 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.000037 | One saved job with full details on |
+| Run start | $0.0025 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.0025 at the default 512 MB |
 
-Naukri Jobs Scraper's Apify Store header, "from $0.24 / 1,000 jobs", shows the lowest discount-tier price: the GOLD price. FREE and BRONZE users (Apify's Free and Starter plans) pay the base price in the table, $0.0003 a job and $0.00034 with details; SILVER (Scale) pays 10% less, $0.00027 and $0.000306; GOLD (Business) and above pay 20% less, $0.00024 and $0.000272. The run start is a flat fee on every plan, $0.0009 per GB of memory, and the header never shows it.
+Naukri Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.012 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.000017 a job; with full details FREE pays $0.000037 and BRONZE $0.000035. SILVER (Scale) pays $0.000014 and $0.000028, GOLD (Business) $0.000012 and $0.000022, PLATINUM and DIAMOND $0.000011 and $0.000021. Each price is what that row costs on Apify at that plan's own rates, measured on 11 runs, plus a markup that falls from 150% to 100% as the plan grows. The run start is a flat fee on every plan, $0.0025 per GB of memory, and the header never shows it.
 
 | Run (Free and Starter price, default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.031 |
-| 100 jobs with full details | $0.035 |
-| 1,000 jobs | $0.30 |
-| 15,000 jobs, the most Naukri shows for one search | $4.50 |
+| 100 newest jobs | $0.0042 |
+| 100 jobs with full details | $0.0062 |
+| 1,000 jobs | $0.020 |
+| 15,000 jobs, the most Naukri shows for one search | $0.26 |
 
 ## How does the price compare with other Naukri scrapers?
 
@@ -64,9 +64,9 @@ Every actor on the Apify Store whose title names Naukri (naukri.com, not only Na
 | epicscrapers/naukri-scraper | 49 | $0.004, $0.008 with details | $0.01 | Keywords |
 | thirdwatch/naukri-jobs-scraper | 46 | $0.0015 | $0.00005 | Naukri and NaukriGulf, 60+ fields |
 | themineworks/india-jobs-mcp | 43 | $0.035 a Naukri search | none | An MCP server with 14 tools |
-| This actor | new | $0.0003, $0.00034 with details | $0.0009 per GB | Titles, places and Naukri's filters, live |
+| This actor | new | $0.000017, $0.000037 with details | $0.0025 per GB | Titles, places and Naukri's filters, live |
 
-Where others are cheaper: on the Scale and Business plans valig and blackfalcondata charge a lower run start ($0.0008 and $0.0007) than this actor's flat $0.0009, so there a run of under 7 jobs, or under 25 with full details, costs a little more here; per job, this actor costs the least on every plan. Where others do more: muhammetakkurtt, memo23 and thirdwatch also read NaukriGulf; muhammetakkurtt exposes every Naukri filter (industry, department, role, education, top companies) by id; memo23 adds employer emails; blackfalcondata adds an incremental mode and Telegram, Slack and webhook alerts.
+Where others are cheaper: this actor's run start, $0.0025, is above every other's ($0.001 or less), so a run of a single job costs less on most of them, and a run of fewer than 4 to 8 jobs (by plan, and with full details) costs less on valig or blackfalcondata. From 8 jobs a run, this actor costs the least on every plan, and per job it costs the least of all, with full details or without. Where others do more: muhammetakkurtt, memo23 and thirdwatch also read NaukriGulf; muhammetakkurtt exposes every Naukri filter (industry, department, role, education, top companies) by id; memo23 adds employer emails; blackfalcondata adds an incremental mode and Telegram, Slack and webhook alerts.
 
 ## Which inputs does it take?
 
@@ -166,7 +166,7 @@ Full details fill `employmentType`, `department`, `companyWebsite`, `industry`, 
 
 ## How fast is it?
 
-Seconds. In local runs on 2026-11-08 the empty form took 1 s inside the actor (2 calls), python developer 14 s (11 calls), python developer in Bangalore 13 s, the 500 newest jobs of the last 24 hours 3 s, and 3,000 sales jobs 58 s (56 calls, about 50 jobs a second, 85 MB of memory). Full details add one call a job, at most four a second: 100 jobs with full details took 165 s in a local run. Naukri's search returns 100 jobs a page, newest first; a rare title takes more pages, because Naukri's answer also holds jobs that only mention the words.
+Seconds. On Apify at the default 512 MB on 2026-11-08: the form as it opens (100 newest jobs) took 8 s, python developer 21 s (11 calls), python developer in Bangalore with 2-5 years 31 s (24 calls), java developer in Pune with a pay minimum and company type 4 s, 1,000 sales jobs 25 s (18 calls, 40 jobs a second, 69 MB of memory), 100 jobs with full details 35 s (105 calls) and 20 internships 4 s. The same python developer search took 18 s at 1 GB and 16 s at 2 GB, for 31% and 97% more cost, so 512 MB stays the default. Naukri's search returns 100 jobs a page, newest first; a rare title takes more pages, because Naukri's answer also holds jobs that only mention the words.
 
 ## Common questions
 
@@ -192,7 +192,7 @@ Naukri Jobs Scraper needs no Naukri login and no API key: it reads the same publ
 
 ### Does it work on Apify's free plan?
 
-Naukri Jobs Scraper works on Apify's free plan, which pays the base price: $0.0003 a job plus the $0.0009 run start at the default 512 MB. The free $5 monthly credit pays for about 16,000 jobs in runs of 100, at $0.031 a run.
+Naukri Jobs Scraper works on Apify's free plan, which pays $0.000017 a job plus the $0.0025 run start at the default 512 MB. The free $5 monthly credit pays for about 119,000 jobs in runs of 100, at $0.0042 a run.
 
 ### How often should I run it?
 
@@ -200,7 +200,7 @@ Running Naukri Jobs Scraper once a day keeps a job feed fresh: set Posted in the
 
 ### What happens if Naukri refuses the run?
 
-Naukri limits how much one address may ask for: in tests on 2026-11-08 an address answered several hundred calls in a few minutes, then got "recaptcha required" for minutes to hours: one address's job pages stayed refused for more than seven hours while its searches answered. A run of 100 jobs makes 2 to 20 calls, plus one per job with details, so a run rarely meets the limit, but runs on Apify share addresses. Naukri Jobs Scraper then tries again, keeps every job it read, says so in its message and `OUTPUT`, and saves jobs without details when only the details were refused. To move a run to fresh addresses, turn on Apify Proxy in Connection (`proxyConfiguration`).
+Naukri limits how much one address may ask for: in tests on 2026-11-08 an address answered several hundred calls in a few minutes, then got "recaptcha required" for minutes to hours: one address's job pages stayed refused for more than seven hours while its searches answered. A run of 100 jobs makes 2 to 24 calls, plus one per job with details, so a run rarely meets the limit: 11 runs on Apify's addresses on 2026-11-08 made 241 calls, 130 of them for job details, and none was refused. Runs on Apify share addresses, though. Naukri Jobs Scraper then tries again, keeps every job it read, says so in its message and `OUTPUT`, and saves jobs without details when only the details were refused. To move a run to fresh addresses, turn on Apify Proxy in Connection (`proxyConfiguration`).
 
 ### How do I get every job of one company?
 
