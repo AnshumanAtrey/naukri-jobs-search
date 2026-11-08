@@ -62,7 +62,7 @@
             "inputSchemaFields": [
                 "searchTerms",
                 "location",
-                "experience",
+                "experienceYears",
                 "postedWithin",
                 "maxJobs"
             ],
@@ -147,14 +147,14 @@
                 "companyType": [],
                 "companies": [],
                 "jobUrls": [],
-                "experience": 0
+                "experienceYears": "fresher"
             },
             "seoTitle": "Jobs for Freshers on Naukri, Newest First",
             "seoDescription": "Newest naukri.com jobs open to freshers with 0 years of experience, with company, city, salary and apply link. One search, no login.",
             "inputSchemaFields": [
                 "searchTerms",
                 "location",
-                "experience",
+                "experienceYears",
                 "postedWithin",
                 "maxJobs"
             ],
@@ -187,7 +187,7 @@
                 "searchTerms",
                 "location",
                 "minSalaryLakhs",
-                "experience",
+                "experienceYears",
                 "maxJobs"
             ],
             "datasetView": "jobs"

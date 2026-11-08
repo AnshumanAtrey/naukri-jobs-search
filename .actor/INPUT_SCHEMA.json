@@ -77,17 +77,13 @@
             "default": "any time",
             "nullable": true
         },
-        "experience": {
-            "title": "Years of experience (experience)",
-            "type": "integer",
-            "editor": "number",
-            "unit": "years",
-            "minimum": 0,
-            "maximum": 30,
-            "description": "Type your years of experience to keep the jobs whose range holds it, as Naukri's Experience filter does: 3 keeps 2-5 Yrs and 3-8 Yrs and leaves out 5-10 Yrs. Type 0 for jobs open to freshers. Leave it empty for every experience.",
-            "example": 3,
-            "nullable": true,
-            "default": null
+        "experienceYears": {
+            "title": "Experience (experienceYears)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ or fresher. A job is kept when the experience it asks for overlaps yours, as Naukri's Experience filter does: 3 keeps 2-5 Yrs and 3-8 Yrs and leaves out 5-10 Yrs. One number also goes to Naukri's own filter. Leave it empty for every experience.",
+            "example": "3",
+            "nullable": true
         },
         "minSalaryLakhs": {
             "title": "Minimum pay (minSalaryLakhs)",

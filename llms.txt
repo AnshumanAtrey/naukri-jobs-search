@@ -24,7 +24,7 @@ Source: https://github.com/AnshumanAtrey/naukri-jobs-search
 - Where the job is (location): cities, states or countries; India keeps every job in India.
 - Remote or office (workType): remote, hybrid or onsite (work from office).
 - Posted in the last (postedWithin): 24 hours, 3, 7, 15 or 30 days, any time, or your own period.
-- Years of experience (experience): keeps the jobs whose experience range holds it; 0 for freshers.
+- Experience (experienceYears): your years, such as 3, a range such as 2-5, 5+ or fresher; keeps the jobs whose experience range overlaps it.
 - Minimum pay (minSalaryLakhs): lakhs a year; 10 is 10 LPA.
 - Company type (companyType): foreign-mnc, indian-mnc, mnc, corporate, startup, unicorn, govt-psu, others.
 - Posted by (postedBy): company or consultant.
@@ -88,7 +88,7 @@ Seconds: in local runs on 2026-11-08 the empty form took 1 s inside the actor, p
 {
   "searchTerms": ["python developer", "django developer"],
   "location": ["Bangalore", "Pune"],
-  "experience": 3,
+  "experienceYears": "3",
   "minSalaryLakhs": 8,
   "postedWithin": "7 days",
   "maxJobs": 100

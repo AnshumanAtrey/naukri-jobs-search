@@ -78,7 +78,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Where the job is (`location`) | Cities, states or countries: Bangalore, Delhi NCR, Karnataka, Dubai. Old and new city names both work. India keeps every job in India, and Remote asks for remote jobs |
 | Remote or office (`workType`) | remote, hybrid or onsite (work from office), as Naukri states it for every job |
 | Posted in the last (`postedWithin`) | 24 hours, 3, 7, 15 or 30 days, any time, or your own period such as 48 hours |
-| Years of experience (`experience`) | Keeps the jobs whose range holds your years, as Naukri's Experience filter: 0 for freshers |
+| Experience (`experienceYears`) | Your years: 3, a range such as 2-5, 5+ or fresher. Keeps the jobs whose range overlaps it, as Naukri's Experience filter |
 | Minimum pay (`minSalaryLakhs`) | Lakhs a year: 10 is 10 LPA. Naukri also counts pay the employer entered but hides |
 | Company type (`companyType`) | foreign-mnc, indian-mnc, mnc, corporate, startup, unicorn, govt-psu or others |
 | Posted by (`postedBy`) | company or consultant |
@@ -97,7 +97,7 @@ Example input:
 {
   "searchTerms": ["python developer", "django developer"],
   "location": ["Bangalore", "Pune"],
-  "experience": 3,
+  "experienceYears": "3",
   "minSalaryLakhs": 8,
   "postedWithin": "7 days",
   "maxJobs": 100
