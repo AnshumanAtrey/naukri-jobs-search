@@ -20,7 +20,7 @@
             "title": "Where the job is (location)",
             "type": "array",
             "editor": "stringList",
-            "description": "Type where the jobs should be: cities, states or countries, one per line, for example Bangalore, Delhi NCR, Karnataka or Dubai. Old and new city names both work (Bangalore and Bengaluru, Gurgaon and Gurugram). India keeps every job in India; Remote here asks for remote jobs. Leave it empty for anywhere.",
+            "description": "Type where the jobs should be: cities, states or countries, one per line, for example Bangalore, Delhi NCR, Karnataka or Dubai. Old and new city names both work (Bangalore and Bengaluru, Gurgaon and Gurugram). India keeps every job in India. Remote typed alone asks for remote jobs; typed next to a city it changes nothing, so pick remote in Remote or office for remote jobs only. Leave it empty for anywhere.",
             "placeholderValue": "Bangalore",
             "example": [
                 "Bangalore"
@@ -81,9 +81,10 @@
             "title": "Experience (experienceYears)",
             "type": "string",
             "editor": "textfield",
-            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ or fresher. A job is kept when the experience it asks for overlaps yours, as Naukri's Experience filter does: 3 keeps 2-5 Yrs and 3-8 Yrs and leaves out 5-10 Yrs. One number also goes to Naukri's own filter. Leave it empty for every experience.",
+            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ for five or more, or fresher. A job is kept when the experience it asks for overlaps yours, as Naukri's Experience filter does: 3 keeps 2-5 Yrs and 3-8 Yrs and leaves out 5-10 Yrs. One number also goes to Naukri's own filter. Naukri's list states no experience for internships, so any experience here leaves them out. Leave it empty for every experience.",
             "example": "3",
-            "nullable": true
+            "nullable": true,
+            "default": null
         },
         "minSalaryLakhs": {
             "title": "Minimum pay (minSalaryLakhs)",

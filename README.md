@@ -10,7 +10,7 @@ Use it as a Naukri API with no login and no API key, a naukri.com job scraper or
 - **Titles that match.** Naukri's keyword search also returns jobs that only mention your words in their skills or text: of its 37,872 jobs for python developer, 4% to 9% of the newest had both words in the title. This actor keeps the ones whose title has every word, and Wider match (`searchDescriptions`) gives you Naukri's whole answer.
 - **Pay, experience and key skills on every row.** Pay is shown on 52% to 69% of jobs (four samples on 2026-11-08), as Naukri's text ("15-24 Lacs PA") and as numbers in rupees a year. Experience comes as text and as fewest and most years, key skills on 99% of jobs.
 - **Two posting dates.** `postedAt` is Naukri's date, which an employer's repost moves to now; `firstPostedAt` is the day Naukri first listed the job. 30% of the 500 newest jobs on Naukri were first posted a week or more earlier.
-- **Naukri's own filters, typed the way people type.** Experience in years, minimum pay in lakhs (10 is 10 LPA), work from office, hybrid or remote, company type (startup, MNC, Govt/PSU), posted by a company or a consultant, last 24 hours to 30 days.
+- **Naukri's own filters, typed the way people type.** Experience in years (3, a range such as 2-5, or 5+), minimum pay in lakhs (10 is 10 LPA), work from office, hybrid or remote, company type (startup, MNC, Govt/PSU), posted by a company or a consultant, last 24 hours to 30 days.
 - **Places by any name.** Bangalore or Bengaluru, Gurgaon or Gurugram, Bombay or Mumbai, a state (Karnataka, or KA), Delhi NCR for the whole capital region, India, or a country abroad.
 - **Checks job links.** Paste Naukri job links or 12-digit job IDs, and each comes back open with the job, or closed.
 
@@ -75,10 +75,10 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Field | What it does |
 |---|---|
 | Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted Naukri search link works too, with its filters |
-| Where the job is (`location`) | Cities, states or countries: Bangalore, Delhi NCR, Karnataka, Dubai. Old and new city names both work. India keeps every job in India, and Remote asks for remote jobs |
+| Where the job is (`location`) | Cities, states or countries: Bangalore, Delhi NCR, Karnataka, Dubai. Old and new city names both work. India keeps every job in India. Remote alone asks for remote jobs; next to a city it changes nothing |
 | Remote or office (`workType`) | remote, hybrid or onsite (work from office), as Naukri states it for every job |
 | Posted in the last (`postedWithin`) | 24 hours, 3, 7, 15 or 30 days, any time, or your own period such as 48 hours |
-| Experience (`experienceYears`) | Your years: 3, a range such as 2-5, 5+ or fresher. Keeps the jobs whose range overlaps it, as Naukri's Experience filter |
+| Experience (`experienceYears`) | Your years: 3, a range such as 2-5, 5+ or fresher. Keeps the jobs whose range overlaps it, as Naukri's Experience filter; internships state none, so it leaves them out |
 | Minimum pay (`minSalaryLakhs`) | Lakhs a year: 10 is 10 LPA. Naukri also counts pay the employer entered but hides |
 | Company type (`companyType`) | foreign-mnc, indian-mnc, mnc, corporate, startup, unicorn, govt-psu or others |
 | Posted by (`postedBy`) | company or consultant |
@@ -176,11 +176,11 @@ Naukri Jobs Scraper uses the date Naukri shows and sorts by, `postedAt`, for the
 
 ### Why do I get fewer jobs than Naukri shows?
 
-Naukri counts every job whose title, key skills or text holds your words: 37,872 for python developer on 2026-11-08, of which 4% to 9% of the newest had both words in the title. Naukri Jobs Scraper keeps the jobs whose title holds every word, and keeps a job posted twice (same company, title, place, experience and pay) once, the newest. Tick Wider match (`searchDescriptions`) to get every job Naukri's search finds.
+Naukri counts every job whose title, key skills or text holds your words: 37,872 for python developer on 2026-11-08, of which 4% to 9% of the newest had both words in the title. Naukri Jobs Scraper keeps the jobs whose title holds every word, and keeps a job posted twice (same company, title, place, experience and pay) once, the newest. Tick Wider match (`searchDescriptions`) to get every job Naukri's search finds. A run that saves no job says why: Naukri had no job with your words inside your other filters, or one filter alone left out the jobs with your words ("783 jobs had your words but not your other filters: the years of experience alone left out 783"), and how to loosen it.
 
 ### How do places work?
 
-Naukri Jobs Scraper reads places the way people type them: Bangalore and Bengaluru, Gurgaon and Gurugram, Bombay and Mumbai find the same jobs; a state (Karnataka, or KA) finds jobs in its cities, from Naukri's own list of 5,810 Indian cities, also by the names Naukri's jobs print (Bhubaneswar, Nashik, Tumakuru, New Delhi, Mumbai Suburban), so 5,780 of 5,820 places on 3,981 jobs read on 2026-11-08 got their state or country; Delhi NCR finds Delhi, Noida, Gurugram, Ghaziabad and Faridabad; India keeps every job in India. A country abroad (United Arab Emirates) finds the jobs whose place names it; Naukri often writes only the city (Dubai), so type the city too. A Naukri job open to remote work names Remote as its place, so type Remote in Remote or office (`workType`) rather than a city to get remote jobs.
+Naukri Jobs Scraper reads places the way people type them: Bangalore and Bengaluru, Gurgaon and Gurugram, Bombay and Mumbai find the same jobs; a state (Karnataka, or KA) finds jobs in its cities, from Naukri's own list of 5,810 Indian cities, also by the names Naukri's jobs print (Bhubaneswar, Nashik, Tumakuru, New Delhi, Mumbai Suburban), so 5,780 of 5,820 places on 3,981 jobs read on 2026-11-08 got their state or country; Delhi NCR finds Delhi, Noida, Gurugram, Ghaziabad and Faridabad; India keeps every job in India. A country abroad (United Arab Emirates) finds the jobs whose place names it; Naukri often writes only the city (Dubai), so type the city too. A Naukri job open to remote work names Remote as its place, so pick remote in Remote or office (`workType`) to get remote jobs, or type Remote alone in Where the job is (`location`). Remote typed next to a city changes nothing: the city's jobs come with every work type, and the run says so.
 
 ### How do I get only jobs above a salary?
 
@@ -200,7 +200,7 @@ Running Naukri Jobs Scraper once a day keeps a job feed fresh: set Posted in the
 
 ### What happens if Naukri refuses the run?
 
-Naukri limits how much one address may ask for: in tests on 2026-11-08 an address answered several hundred calls in a few minutes, then got "recaptcha required" for minutes to over an hour. A run of 100 jobs makes 2 to 20 calls, plus one per job with details, so a run rarely meets the limit, but runs on Apify share addresses. Naukri Jobs Scraper then tries again, keeps every job it read, says so in its message and `OUTPUT`, and saves jobs without details when only the details were refused. To move a run to fresh addresses, turn on Apify Proxy in Connection (`proxyConfiguration`).
+Naukri limits how much one address may ask for: in tests on 2026-11-08 an address answered several hundred calls in a few minutes, then got "recaptcha required" for minutes to hours: one address's job pages stayed refused for more than seven hours while its searches answered. A run of 100 jobs makes 2 to 20 calls, plus one per job with details, so a run rarely meets the limit, but runs on Apify share addresses. Naukri Jobs Scraper then tries again, keeps every job it read, says so in its message and `OUTPUT`, and saves jobs without details when only the details were refused. To move a run to fresh addresses, turn on Apify Proxy in Connection (`proxyConfiguration`).
 
 ### How do I get every job of one company?
 
@@ -265,6 +265,7 @@ Naukri Jobs Scraper reads public job postings, the pages any visitor sees withou
 - Company type and who posted a job are Naukri's own filters; the list does not show them, so they are not checked again here (who posted it comes with full details).
 - Naukri limits each address; a refused run keeps what it read and says so (see above). Full details make one call per job, so large runs with details meet the limit sooner.
 - Pay is shown on about half to two thirds of jobs; the rest say "Not disclosed".
+- A job that states no experience is left out once you type an Experience (`experienceYears`). On Naukri that is every internship: its list states none (32 of 32 internships on 2026-11-08, against every one of 3,987 other jobs stating a range), so leave Experience empty when you pick intern in Job type (`employmentType`).
 - A place abroad that Naukri writes without its country (Dubai, London) has no country in the row: India leaves it out, and the country's name does not find it, so type the city. A part of a city that is not on Naukri's city list (Powai, Koramangala) has no state either, so a search for its state leaves the job out unless the job also names its city; a search for the place itself finds it.
 - A job posted twice by one company at one place, with the same experience and pay, is delivered once, the newest.
 - Titles and descriptions are as the employer wrote them, almost all in English.

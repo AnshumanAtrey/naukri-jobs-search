@@ -21,10 +21,10 @@ Source: https://github.com/AnshumanAtrey/naukri-jobs-search
 ## Input keys
 
 - Job titles to find (searchTerms): one per line; a job matches when its title has every word; a Naukri search link works too.
-- Where the job is (location): cities, states or countries; India keeps every job in India.
+- Where the job is (location): cities, states or countries; India keeps every job in India; Remote alone asks for remote jobs, next to a city it changes nothing.
 - Remote or office (workType): remote, hybrid or onsite (work from office).
 - Posted in the last (postedWithin): 24 hours, 3, 7, 15 or 30 days, any time, or your own period.
-- Experience (experienceYears): your years, such as 3, a range such as 2-5, 5+ or fresher; keeps the jobs whose experience range overlaps it.
+- Experience (experienceYears): your years, such as 3, a range such as 2-5, 5+ or fresher; keeps the jobs whose experience range overlaps it; internships state none, so it leaves them out.
 - Minimum pay (minSalaryLakhs): lakhs a year; 10 is 10 LPA.
 - Company type (companyType): foreign-mnc, indian-mnc, mnc, corporate, startup, unicorn, govt-psu, others.
 - Posted by (postedBy): company or consultant.
