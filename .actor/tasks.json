@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 512,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "naukri-jobs-last-24-hours",
+            "publish": false,
             "title": "Get the newest Naukri jobs posted in the last 24 hours",
             "description": "Get the 100 newest jobs posted on naukri.com in the last day, with the company, places, experience, pay when shown, key skills and link. Set Number of jobs to 0 to get every one, and schedule it daily for a fresh feed.",
             "input": {
@@ -37,6 +38,7 @@
         },
         {
             "name": "python-developer-jobs-bangalore",
+            "publish": false,
             "title": "Find Python developer jobs in Bangalore on Naukri",
             "description": "Search naukri.com for Python developer jobs in Bangalore (Bengaluru), newest first, with the company, experience asked, pay when shown, key skills and link. Every title holds both words.",
             "input": {
@@ -101,6 +103,7 @@
         },
         {
             "name": "data-analyst-jobs-naukri",
+            "publish": false,
             "title": "Find data analyst jobs in India on Naukri",
             "description": "Search naukri.com for data analyst jobs across India, newest first, with the company, places, experience asked, pay when shown, key skills and company rating.",
             "input": {
@@ -162,6 +165,7 @@
         },
         {
             "name": "software-jobs-above-20-lpa-naukri",
+            "publish": false,
             "title": "Find software engineer jobs paying 20 LPA or more on Naukri",
             "description": "Search naukri.com for software engineer jobs paying 20 lakhs a year or more, newest first, with the pay shown, experience asked, company rating and link. Naukri also counts pay the employer entered but hides.",
             "input": {
@@ -194,6 +198,7 @@
         },
         {
             "name": "internships-naukri",
+            "publish": false,
             "title": "Find internships on Naukri",
             "description": "Get the newest internships on naukri.com, with the stipend, the company, places and link. Add a field such as marketing to narrow them down.",
             "input": {
@@ -225,6 +230,7 @@
         },
         {
             "name": "sales-jobs-mumbai-naukri",
+            "publish": false,
             "title": "Find sales jobs in Mumbai on Naukri with full details",
             "description": "Search naukri.com for sales jobs in Mumbai with full details: the description, job type, department, role, industry, education, applicants so far and pay when shown.",
             "input": {
@@ -258,6 +264,7 @@
         },
         {
             "name": "check-naukri-job-links",
+            "publish": false,
             "title": "Check whether Naukri job links are still open",
             "description": "Paste Naukri job links or job IDs and each comes back open, with the job, or closed. Handy for cleaning expired jobs out of a sheet or a job board.",
             "input": {
