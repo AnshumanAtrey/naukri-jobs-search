@@ -4,6 +4,13 @@ Naukri jobs scraper and API: search naukri.com, India's largest job board, live 
 
 Use it as a Naukri API with no login and no API key, a naukri.com job scraper or a daily India job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. Every row's title holds the words you typed, Bangalore finds Bengaluru jobs, and a pasted Naukri search link keeps its filters. Available as an [Apify Actor](https://apify.com/anshumanatrey/naukri-jobs-search). $0.000017 per job, $0.000037 with full details, $0.0025 per run start at the default memory.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Naukri Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Naukri%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fnaukri-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http naukri-jobs-search "https://mcp.apify.com?tools=anshumanatrey/naukri-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add naukri-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/naukri-jobs-search"`, then `codex mcp login naukri-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/naukri-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches all of Naukri, live.** About 690,000 open jobs (692,506 on 2026-11-08), read from Naukri's own search at the moment of your run, newest first.
